@@ -17,4 +17,13 @@ class GameScene: SKScene {
         addChild(background) // to add any node to the current screen
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let touch = touches.first else { return } // to pull out any of the screen touches from the touches set
+        let location = touch.location(in: self) // use its location(in:) method to find out where the screen was touched in relation to self - i.e. the game scene
+        
+        let box = SKSpriteNode(color: .red, size: CGSize(width: 64, height: 64)) // generates a node filled with a color (red) at a size (64x64)
+        box.position = location // sets the new box's position to be where the tap happened
+        addChild(box) // adds it to the scene
+    }
+    
 }
