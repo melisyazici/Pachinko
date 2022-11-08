@@ -7,7 +7,7 @@
 
 import SpriteKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMove(to view: SKView) {
         let background = SKSpriteNode(imageNamed: "background") // load the file called background.jpg
@@ -17,6 +17,7 @@ class GameScene: SKScene {
         addChild(background) // to add any node to the current screen
         
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame) // adds a physics body to the whole scene that is a line on each edge, effectively acting like a container for the scene
+        physicsWorld.contactDelegate = self
         
         makeBouncer(at: CGPoint(x: 0, y: 0))
         makeBouncer(at: CGPoint(x: 256, y: 0))
@@ -38,6 +39,7 @@ class GameScene: SKScene {
         let ball = SKSpriteNode(imageNamed: "ballRed")
         ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2.0)
         ball.physicsBody?.restitution = 0.4
+        ball.physicsBody?.contactTestBitMask = ball.physicsBody?.collisionBitMask ?? 0 // detect every collision
         ball.position = location
         ball.name = "ball"
         addChild(ball)
@@ -78,6 +80,29 @@ class GameScene: SKScene {
         let spinForever = SKAction.repeatForever(spin) // make it loop forever
         slotGlow.run(spinForever) // apply that to the glow
         
+    }
+    
+    func collisionBetween(ball: SKNode, object: SKNode) {
+        if object.name == "good" {
+            destroy(ball: ball)
+        } else if object.name == "bad" {
+            destroy(ball: ball)
+        }
+    }
+    
+    func destroy(ball: SKNode) {
+        ball.removeFromParent()// removes the node from the game (from the node tree)
+    }
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        guard let nodeA = contact.bodyA.node else { return }
+        guard let nodeB = contact.bodyB.node else { return }
+        
+        if nodeA.name == "ball" {
+            collisionBetween(ball: nodeA, object: nodeB)
+        } else if nodeB.name == "ball" {
+            collisionBetween(ball: nodeB, object: nodeA)
+        }
     }
     
 }
