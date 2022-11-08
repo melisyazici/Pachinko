@@ -57,9 +57,11 @@ class GameScene: SKScene {
         if isGood {
             slotBase = SKSpriteNode(imageNamed: "slotBaseGood")
             slotGlow = SKSpriteNode(imageNamed: "slotGlowGood")
+            slotBase.name = "good"
         } else {
             slotBase = SKSpriteNode(imageNamed: "slotBaseBad")
             slotGlow = SKSpriteNode(imageNamed: "slotGlowBad")
+            slotBase.name = "bad"
         }
         
         slotBase.position = position
