@@ -14,6 +14,7 @@
 		151DD21F291972DA003461F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 151DD21D291972DA003461F6 /* Main.storyboard */; };
 		151DD221291972DC003461F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 151DD220291972DC003461F6 /* Assets.xcassets */; };
 		151DD224291972DC003461F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 151DD222291972DC003461F6 /* LaunchScreen.storyboard */; };
+		151DD22B291AAD8D003461F6 /* FireParticles.sks in Resources */ = {isa = PBXBuildFile; fileRef = 151DD22A291AAD8D003461F6 /* FireParticles.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		151DD21E291972DA003461F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		151DD220291972DC003461F6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		151DD223291972DC003461F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		151DD22A291AAD8D003461F6 /* FireParticles.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FireParticles.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				151DD21B291972DA003461F6 /* GameViewController.swift */,
 				151DD21D291972DA003461F6 /* Main.storyboard */,
 				151DD220291972DC003461F6 /* Assets.xcassets */,
+				151DD22A291AAD8D003461F6 /* FireParticles.sks */,
 				151DD222291972DC003461F6 /* LaunchScreen.storyboard */,
 			);
 			path = Pachinko;
@@ -128,6 +131,7 @@
 			files = (
 				151DD21F291972DA003461F6 /* Main.storyboard in Resources */,
 				151DD216291972DA003461F6 /* GameScene.sks in Resources */,
+				151DD22B291AAD8D003461F6 /* FireParticles.sks in Resources */,
 				151DD221291972DC003461F6 /* Assets.xcassets in Resources */,
 				151DD224291972DC003461F6 /* LaunchScreen.storyboard in Resources */,
 			);
