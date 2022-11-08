@@ -9,6 +9,8 @@ import SpriteKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
+    let ballColors = ["Blue", "Cyan", "Green", "Grey", "Purple", "Red", "Yellow"]
+    
     var scoreLabel: SKLabelNode!
     
     var score = 0 {
@@ -83,10 +85,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 box.physicsBody?.isDynamic = false
                 addChild(box)
             } else {
-                let ball = SKSpriteNode(imageNamed: "ballRed")
+                let ball = SKSpriteNode(imageNamed: "ball\(ballColors.randomElement()!)")
                 ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2.0)
                 ball.physicsBody?.restitution = 0.4
-                ball.physicsBody?.contactTestBitMask = ball.physicsBody?.collisionBitMask ?? 0 // detect every collision
+                ball.physicsBody?.contactTestBitMask = ball.physicsBody?.collisionBitMask ?? 0 // detect every collision - The collision bitmask determines bounces; the contact test bitmask determines which bounces we get told about
                 ball.position = location
                 ball.name = "ball"
                 addChild(ball)
