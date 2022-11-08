@@ -11,11 +11,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     let ballColors = ["Blue", "Cyan", "Green", "Grey", "Purple", "Red", "Yellow"]
     
-    var scoreLabel: SKLabelNode!
+    var RemainingBallsLabel: SKLabelNode!
     
-    var score = 0 {
+    var remainingBalls = 0 {
         didSet {
-            scoreLabel.text = "Score: \(score)"
+            RemainingBallsLabel.text = "Score: \(remainingBalls)"
         }
     }
     
@@ -38,11 +38,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         background.zPosition = -1 // draw this behind everything else
         addChild(background) // to add any node to the current screen
         
-        scoreLabel = SKLabelNode(fontNamed: "Chalkduster")
-        scoreLabel.text = "Score: 0"
-        scoreLabel.horizontalAlignmentMode = .right
-        scoreLabel.position = CGPoint(x: 980, y: 700)
-        addChild(scoreLabel)
+        RemainingBallsLabel = SKLabelNode(fontNamed: "Chalkduster")
+        RemainingBallsLabel.text = "Score: 0"
+        RemainingBallsLabel.horizontalAlignmentMode = .right
+        RemainingBallsLabel.position = CGPoint(x: 980, y: 700)
+        addChild(RemainingBallsLabel)
         
         editLabel = SKLabelNode(fontNamed: "Chalkduster")
         editLabel.text = "Edit"
@@ -84,7 +84,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 box.physicsBody = SKPhysicsBody(rectangleOf: box.size)
                 box.physicsBody?.isDynamic = false
                 addChild(box)
-            } else {
+            } else if remainingBalls < 5 && !isBallInPlay() {
                 let ball = SKSpriteNode(imageNamed: "ball\(ballColors.randomElement()!)")
                 ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2.0)
                 ball.physicsBody?.restitution = 0.4
@@ -139,10 +139,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func collisionBetween(ball: SKNode, object: SKNode) {
         if object.name == "good" {
             destroy(ball: ball)
-            score += 1
+            remainingBalls += 1
         } else if object.name == "bad" {
             destroy(ball: ball)
-            score -= 1
+            remainingBalls -= 1
         }
     }
     
@@ -164,6 +164,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         } else if nodeB.name == "ball" {
             collisionBetween(ball: nodeB, object: nodeA)
         }
+    }
+    
+    func isBallInPlay() -> Bool {
+        for node in self.children {
+            if node.name == "ball" {
+                return true
+            }
+        }
+        return false
     }
     
 }
