@@ -66,6 +66,11 @@ class GameScene: SKScene {
         slotGlow.position = position
         addChild(slotBase)
         addChild(slotGlow)
+        
+        let spin = SKAction.rotate(byAngle: .pi, duration: 10) // spin by pi degrees so half a circle over 10 seconds
+        let spinForever = SKAction.repeatForever(spin) // make it loop forever
+        slotGlow.run(spinForever) // apply that to the glow
+        
     }
     
 }
